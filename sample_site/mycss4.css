@@ -1,0 +1,28 @@
+h1{ background: grey;
+	margin-left: 15px;
+	font-size: 50px;
+
+ }	
+
+img{ margin-left: 50px; 
+	background: blue;
+
+}
+
+h2{ text-decoration: underline;
+	display: block;
+}
+
+
+p{
+	font-size: 18px;
+	margin-left: 25px;
+	font-weight: bold;
+}
+
+#p123 {color: pink;
+}
+
+.class1 {
+	font-size: 33px;
+}
