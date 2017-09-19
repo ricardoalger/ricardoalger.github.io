@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>testing api</title>
+</head>
+<body>
+
+	<div id="topic"></div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+
+
+		var vRating = "Rating: "
+		var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=800d8166b7844f1e89a0720219c44cd7&q=monkey&limit=1&offset=0&lang=en"
+
+
+	$.ajax({
+		url: queryURL,
+		method: "Get"
+	}).done(function(response){
+
+		$("#topic").html(vRating + response.data[0].rating);
+
+
+		console.log(response.data[0].rating);
+
+
+	});
+
+	</script>
+
+
+
+
+
+	
+</body>
+</html>

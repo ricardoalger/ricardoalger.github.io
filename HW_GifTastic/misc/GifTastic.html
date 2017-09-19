@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>GifTastic</title>
+
+
+<link rel="stylesheet" type="text/css" href="GifTastic.css">
+
+<!--1 - build a website with an api connection - use public key
+	2 - build button that will that will add a new buttons in top DIV also store
+	3 - top buttons when pressed should query results from the api and present on site
+		"q"
+		"limit"
+		"rating"
+	4 - change http to https when luanching into github or results will not fuction properly
+	5 - VarName = "topics" store a preset population 
+-->
+
+<!-- api key 800d8166b7844f1e89a0720219c44cd7 -->
+<!-- https://api.giphy.com/v1/gifs/search?api_key=800d8166b7844f1e89a0720219c44cd7&q=**VAR**&limit=10&offset=0&lang=en -->
+
+</head>
+
+
+<body>
+
+	<DIV class="container">
+
+		<h1>GifTastic Homework</h1>
+
+		<!-- buttons to be located here -->
+
+		<div id="buttons-view"></div>
+
+		<div id="topic-view"></div>
+
+		<form id="topic-form">
+			<label for="topic-input">Add Giphy Topic</label>
+			<input type="text" id="topic-input">
+			
+			<!-- trigger for new topics -->
+
+			<input id="add-topic" type="submit" name="Add a New Topic">
+		</form>
+
+		<!-- <div id="topic-gif"></div> -->
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+
+
+
+	// build array for top buttons
+	var topics =["dog","cat","cow","pig","chicken","hawk","mouse","rabbit"];
+
+
+	// display topic results
+
+		function displayTopicInfo() {
+			var gifTopic = $(this).attr("data-name");
+			var queryURL ="https://api.giphy.com/v1/gifs/search?api_key=800d8166b7844f1e89a0720219c44cd7&q=" + gifTopic + "&limit=10&offset=0&lang=en";
+
+	// ajax call
+			$.ajax ({
+				url: queryURL,
+				method: "Get"
+			}).done(function(response)) {
+
+				// create div
+
+				var topicDiv = $("<div class='topic'>");
+
+
+				$("#topic-view").html(response.data[0].rating);
+
+			});
+		}
+
+		function renderButton(){
+			$("#buttons-view").empty();
+
+			for (var i = 0; < topics.lenght; i++){
+				var a = $("<button>");
+				a.addClass("topic");
+				a.attr("data-name", topics[i])
+				a.text(topics[i]);
+				$("#buttons-view").append(a);
+			}
+		}
+
+		$("#add-topic").on("click",function(event){
+			event.preventDefault();
+			var topic = $("#topic-input").val().trim();
+			topics.push(topic);
+			renderButtons();
+		});
+
+		$(document).on("click",".topic",displayTopic);
+
+
+// testing //
+
+
+	
+
+	</script>
+	</DIV>
+</body>
+</html>

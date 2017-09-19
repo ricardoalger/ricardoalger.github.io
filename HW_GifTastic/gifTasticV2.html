@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>gifTastic</title>
+
+	<link rel="stylesheet" type="text/css" href="GifTastic.css">
+
+</head>
+
+<body>
+	
+	<DIV class="container">
+		<h1>GifTastic!</h1>
+
+		<!-- topics buttons appear here -->
+
+		<div id="buttons-view"></div>
+
+		<!-- topic detail appears here -->
+
+		<div id="topic-details"></div>
+
+		<!-- form for adding buttions -->
+
+		<form id="topic-form">
+			<label for="topic-input">Add Topic</label>
+			<input type="test" id="topic-input" name="Add Topic"><br>
+			<input id="add-topic" type="submit" name="Add a New Topic">
+
+		</form>
+
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    	<script type="text/javascript">
+
+    	//set up array of topics
+
+    	var vTopics =["dog","cat","cow","pig","chicken","hawk","mouse","rabbit"];
+
+    	// fuction to display
+
+    	function displayTopicInfo(){
+    		var gifTopic = $(this).attr("data-name");
+    		var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=800d8166b7844f1e89a0720219c44cd7&q=" + gifTopic + "&limit=10&offset=0&lang=en";
+
+    	}
+
+
+    	// ajax call
+
+    	$.ajax({
+    		url: queryURL,
+    		method:"Get"
+    	}).done(function(response){
+
+    		var topicDiv = $("<div class='topic'>");
+
+    		var vRating =
+    	})
+
+    	// create div to hold topics
+
+    	// fuction for displaying topic data
+
+    	// looping through array of topics
+
+    	// function to handle events when topic button selected
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+	</DIV>
+
+
+
+	
+</body>
+</html>
