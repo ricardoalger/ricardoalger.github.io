@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Twitter Practice</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<style>
+#map{
+    height:400px;
+    width:100%;
+}
+</style>
+</head>
+<body>
+    
+        
+    
+    <div class="container">
+            
+                <div class="main-login main-center">
+                <h5>Sign up to meet like-minded people in your area</h5>
+                    <form class="" method="post" action="#">
+                        
+                        <div class="form-group">
+                            <label for="name" class="cols-sm-2 control-label">Your Name</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your name"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="twitter" class="cols-sm-2 control-label">Your Twitter Handle</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="twitter" id="twitter"  placeholder="Enter your Twitter handle"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="twitter" class="cols-sm-2 control-label">Street Address</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="streetAddress" id="streetAddress"  placeholder="Enter your street address"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="twitter" class="cols-sm-2 control-label">Zip Code</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="zipCode" id="zipCode"  placeholder="Enter your zip code"/>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary" id="add-user-btn" type="submit">Submit</button>
+                        
+                    </form>
+                </div>
+            
+        </div>
+        <br>
+        <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title"><strong>Current Users</strong></h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-hover" id='users-table'>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Twitter Handle</th>
+                    <th>Street Address</th>
+                    <th>Zip Code</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="container">
+            <div class= "col-lg-6">
+                <button class="btn btn-primary" id="add-timeline-btn" type="submit">Show Timeline</button>
+            </div>
+            <div class= "col-lg-6">
+                <button class="btn btn-primary" id="add-map-btn" type="submit">Map</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class= "col-lg-6">
+        <a id="timeline"></a>
+        </div>
+        <div class= "col-lg-6">
+        <div id="map"></div>
+        </div>
+            
+    </div>
+    
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+  return t;
+}(document, "script", "twitter-wjs"));
+</script>
+<script>
+    function initMap(){
+        // Map Options
+        var options = {
+            zoom:12,
+            center: {
+                lat: 38.9072,
+                lng: -77.0369,
+                }
+            }
+        // New Map
+        var map = new google.maps.Map(document.getElementById('map'), options);
+        // Marker array
+        var markers = [
+        {
+
+          coords:{lat:38.8840569,lng:-77.1171146},
+          content:'<h3>Jack Johnson</h3>'
+        },
+        {
+          coords:{lat:38.897505,lng:-77.070141},
+          content:'<h3>Michael Franti</h3>'
+        },
+        {
+          coords:{lat:42.7762,lng:-71.0773}
+        }
+      ];
+        // Marker loop
+        for(var i = 0;i < markers.length;i++){
+        // Add marker
+        addMarker(markers[i]);
+        }
+        // Add Marker Function
+        function addMarker(props){
+        var marker = new google.maps.Marker({
+            position:props.coords,
+                //lat: 38.9559,lng: -76.9455
+            map:map,
+        });
+        if(props.content){
+          var infoWindow = new google.maps.InfoWindow({
+            content:props.content
+          });
+          marker.addListener('click', function(){
+            infoWindow.open(map, marker);
+          });
+        }
+      }
+    }
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1pJgXO8mrkreY7vjTbdF5zInS918nhNQ&callback=initMap">
+    </script>
+<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="js/v2.js"></script>
+</body>
+</html>
