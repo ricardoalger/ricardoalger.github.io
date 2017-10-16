@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Fall Train Schedule</title>
+
+	<!-- set script references  -->
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script type = "text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+
+	<!-- Moment JS -->
+	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+	<!-- Firebase -->
+	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+</head>
+
+<body>
+ 
+
+<!-- Data Entry Form for train along with schedule --> 
+<!-- Instructions
+
+Make sure that your app suits this basic spec:
+When adding trains, administrators should be able to submit the following:
+Train Name
+Destination
+First Train Time in military time
+Frequency in minutes
+Code this app to calculate when the next train will arrive; this should be relative to the current time.
+Users from many different machines must be able to view same train times.
+Styling and theme are completely up to you. Get Creative! -->
+
+
+<!-- Jumbotron train schedule  -->
+	<div class="jumbotron">
+		<h1 class="text-center">Virginia Fall Train Schedule</h1>
+	</div>
+
+<!-- Display Current train schedule -->
+<!-- NOTE -->
+
+	<div class="container schedule-container">
+		<div class="row">
+			<!-- build current train schedule panel -->
+			<div class="col-lg-10 col-lg-offset-1 col-lg-10 col-lg-offset-1">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h1 class="panel-title"><strong>Fall Train Schedule</strong></h1>
+						<!-- Panel Body -->
+					</div>	
+						<div class="panel-body">
+							<!-- database results -->
+							<table class="table table-hover" id="trainSchedule">
+								<thead>
+									<tr>
+										<th>Train Name</th>
+										<th>Destination</th>
+										<th>Frequency (min)</th>
+										<th>Next Arrival</th>
+										<th>Minutes Away</th>
+									</tr>
+								</thead>
+								<tbody>	
+								<!-- placehodler for firebase data -->						
+								</tbody> <!-- close table body
+							-->
+							</table> <!-- close table -->
+
+						</div>	<!-- close Panel Body -->		
+					</div>  <!-- close Panel  -->
+				</div>	
+			</div> <!-- close panel -->
+		</div> <!-- close row -->
+	</div> <!-- close container -->
+
+	<div class="container input-container">
+		<div class="row">			
+			<div class="col-lg-10 col-lg-offset-1 col-lg-10 col-lg-offset-1">
+				<div class="panel panel-primary">
+					<div class="panel panel-heading">
+						<h3 class="panel-title"><strong>Add Train to Schedule</strong></h3>						
+					</div>
+					<div class="panel-body">
+						<!-- Build form -->
+						<form role="form">
+							<div class="form-group">
+								<label for="text">Train Name</label>
+								<input type="text" class="form-control" id="name-input">	
+							</div>
+							<div class="form-group">
+								<label for="text">Destination</label>
+								<input type="text" class="form-control" id="destination-input">	
+							</div>
+							<div class="form-group">
+								<label for="text">First Train Time (HH:mm - military time)</label>
+								<input type="text" class="form-control" id="first-train-time-input">	
+							</div>
+							<div class="form-group">
+								<label for="text">Frequency (min)</label>
+								<input type="text" class="form-control" id="frequency-input">
+							</div>
+							<button type="submit" class="btn btn-primary" id="add-train" >Add Train</button>							
+						</form> <!-- close form -->				
+					</div> <!-- close body -->					
+				</div> <!-- close panel primary -->				
+			</div> <!-- close columns -->
+		</div> <!-- close row --> 
+	</div> <!-- close input container -->
+
+	<!-- Javascript src file  -->
+
+	<script src="javascript_v2.js"></script>
+
+
+	
+</body>
+</html>
